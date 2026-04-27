@@ -1,0 +1,32 @@
+---
+title: "ECON 470 Peer Review"
+subtitle: "Submission Spring 2026"
+author: "Srijon Sarkar"
+format:
+  pdf:
+    output-file: "sarkar-s-review"
+    output-ext:  "pdf"
+    header-includes:
+      - \usepackage{float}
+      - \floatplacement{table}{H}
+---
+
+```{r}
+#| include: false
+
+# Preliminaries -----------------------------------------------------------
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, ggplot2, dplyr, lubridate, haven)
+
+library(knitr)
+library(kableExtra)
+
+hcris.full <- read_tsv("../data/output/HCRIS_Data.txt")
+```
+
+## Question 1
+
+
+
+
+
