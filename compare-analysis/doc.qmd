@@ -13,14 +13,42 @@ format:
 
 ## Question 1
 
-Code Review and Efficiency (10 points): Are there any parts of the code that seem inefficient or redundant? How could these sections be optimized for better performance or clarity?
+_Code Review and Efficiency (10 points): Are there any parts of the code that seem inefficient or redundant? How could these sections be optimized for better performance or clarity?_
 
-No, I believe the reviewee's implementation was one of the simpler and easier to navigate and read ones I've come across. One suggestion would be the inclusion of a few comments to decompose the code into a textually readable one.
+No, I believe the reviewee's implementation was one of the simpler and easier to navigate and read ones I've come across, with no particular redundant or inefficient sections. 
+
+One suggestion would be the inclusion of a few comments to decompose the code into a textually readable form. This would also aid in understanding some binary choices I encountered while traversing through the code outputs.
+
+For blocks to be optimized for performance and clarity, I would suggest a singular definition of penalty and following that for consistency in the reviewee's code, which I elaborate further about in the following question.
+
+Lastly, clocktime analysis via the `tictoc` library yields near about same runtime, so both codes are equally efficient.
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(knitr)
+library(kableExtra)
+
+timing_df <- data.frame(
+    Role = c("Reviewer", "Reviewee", "Difference"),
+    Time_Seconds = c(2.746, 2.733, abs(2.746 - 2.733))
+)
+
+kable(timing_df,
+      col.names = c("Role", "Time (seconds)"),
+      caption = "Processing Time Comparison",
+      digits = 3,
+      align = c("l", "c")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = FALSE) %>%
+    row_spec(3, bold = TRUE)
+```
 
 \newpage
 ## Question 2
 
-Comparison of Results (10 points): How well do their results compare with your own? Are there any areas where the two analyses are particularly different?
+_Comparison of Results (10 points): How well do their results compare with your own? Are there any areas where the two analyses are particularly different?_
 
 Here we are conducting a comparison and analysis of Homework 4. Problems 1 through 3 match exactly to the numbers and lines of graphs to initiate the comparison with. Problem 4 brings the first mismatch. Initially, the reviewee code does follow this construction of price:
 
@@ -43,20 +71,24 @@ Finally, the local behavior of Problem 10 is roughly captured in the reviewee's 
 \newpage
 ## Question 3
 
-Replicability and Documentation (10 points): Are you able to clone your peer’s repository and replicate their results?
+_Replicability and Documentation (10 points): Are you able to clone your peer’s repository and replicate their results?_
 
-Yes, the cloning was sufficiently easy to implement. We implement two replications, one with their code and my data & definitions, and another with their data & definitions with my code. Both yielded the same result as the fed-in result was the same, and the aforementioned problems showcasing exact similarity happened to have the same code approaches.
+Yes, the cloning was sufficiently easy to implement. After cloning via the Open Demand terminal, curating the data, and changing the relative paths, I accumulated the final version, submission 3, for both the reviewee and me into this cumulative folder for comparative analysis. 
+
+Yes, I was also able to replicate their results exactly upon running their homework code implementation.
+
+Initially, I had two implementations in mind to replicate. One with their code and my data & definitions, and another with their data & definitions with my code. We note that both reviewee's and my data are syntactically similar in structural size, as both yielded a 139658 by 51 array; however, a few variable definitions could have been tweaked, as described above in question 2. Thus, having compared their data and code in the question above, when their data was run through my code, we still noticed approximately the same results and outcomes, with OLS estimate magnitude at times varying a minor amount but still staying in a $\pm 10$ magnitude range (with the same sign). Thus, we showcase and address both cases of exactness of similarity and inexactness of differences between the two code approaches.
 
 \newpage
 ## Question 4
 
-Diagnosing Replication (10 points): If you were unable to replicate their results using their code, what do you think is the central problem? If you were able to replicate, are there things that could have been changed (e.g., code structure, documentation, commenting, etc) that would have made it easier?
+_Diagnosing Replication (10 points): If you were unable to replicate their results using their code, what do you think is the central problem? If you were able to replicate, are there things that could have been changed (e.g., code structure, documentation, commenting, etc) that would have made it easier?_
 
-I definitely feel a README would have been of great aid in the organization of the various subdirectories, data files, and R packages. Further, as opined above, their comments could have been a little more frequent.
+I definitely feel a README would have been of great aid in the organization of the various subdirectories, data files, and R packages. Further, as opined above, their comments could have been a little more frequent, along with a consistent definition of certain variables, such as net penalty. Furthermore, the inclusion of an explanation of choices made at specific locations when filtering, mutating, and augmenting the dataset would have been of great aid. I've further included a codebase and data organization structure in my peer review git repository README to provide an example and ease review of this comparison analysis.
 
 \newpage
 ## Question 5
 
-Final Thoughts (10 points): How might you update your own code based on your review of your peer’s work?
+_Final Thoughts (10 points): How might you update your own code based on your review of your peer’s work?_
 
-I wouldn't necessarily bring about any major changes in my own code, as they happened to have matched a lot of the answers discussed in class. Further, I believe the orientation and explanation in my code seemed to be defendable as opposed to sudden changes or tweaks in the reviewee's code that seem hard to reason about.
+I wouldn't necessarily bring about any major changes in my own code, as they happened to have matched a lot of the answers discussed in class. Further, I believe the orientation and explanation in my code seemed to be defendable as opposed to sudden changes or tweaks in the reviewee's code that seem hard to reason about. However, when recommending reviewee about including comments and explanations while adding or changing variables, or filtering and editing datasets, I realize in retrospect that I could have also included more of such details to ease the code flow instead of a very general or a single overarching statement.
